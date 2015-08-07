@@ -12,6 +12,7 @@ if !game.isSizeValid?
   exit
 end
 
+
 puts "Please input the life point:\n"
 
 strArr = []
