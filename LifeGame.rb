@@ -43,6 +43,7 @@ class LifeGame
     @lifePointArr = []
     arr.each{ |point|
       point[-1] = "" if point[-1].eql?("\n")
+      return if point.eql?("End")
       x , y = point.split(",")
       @lifePointArr << [x.to_i,y.to_i]
     }
@@ -50,7 +51,6 @@ class LifeGame
 
   def isLifeNumberValid?(x,y)
     if x.to_i < 0 or x.to_i >= @x.to_i or y.to_i < 0 or y.to_i >= @y.to_i
-      @worldStr = getExceptionMessage(x,y)
       return false
     end
     return true
@@ -64,6 +64,7 @@ class LifeGame
         index = getIndex(x,y)
         @worldStr[index] = "#"
       else
+        @worldStr = getExceptionMessage(x,y)
         return
       end
     }
@@ -77,4 +78,16 @@ class LifeGame
     end
   end
 
+  def getAllValidNeighborsIndexArray(x,y)
+    validIndexArr = []  
+    indexArr = [[x-1,y][x-1,y-1],[x-1,y+1],[x,y],[x,y-1],[x,y+1],[x+1,y][x+1,y-1],[x+1,y+1]]
+    indexArr.each{ |x,y|
+    if isLifeNumberValid?(x,y)
+      validIndexArr << [x,y]
+    end
+    }
+    
+    return validIndexArr
+  end
+  
 end
