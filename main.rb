@@ -25,3 +25,4 @@ game.setLifePoint(strArr)
 game.createWorld()
 game.updateLifePoint
 game.printWorld()
+
